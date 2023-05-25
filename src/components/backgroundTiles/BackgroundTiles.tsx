@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import anime from "animejs/lib/anime.es"
+import anime from "animejs"
 import MachImage from "../../assets/mach.png";
 import "./BackgroundTiles.css"
 
@@ -11,7 +11,7 @@ function BackgroundTiles() {
     const tilesContainer = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
-        setRows(Math.floor(document.body.clientHeight / 50))
+        setRows(Math.floor((tilesContainer.current?.clientHeight as number) / 50))
         setColumns(Math.floor(document.body.clientWidth / 50))
 
         tilesContainer.current?.style.setProperty("--columns", columns.toString())
@@ -40,9 +40,10 @@ function BackgroundTiles() {
             <div ref={tilesContainer} className="tiles-container">
                 {
                     Array.from(Array(columns * rows)).map((_, index) => {
-                        return <div style={{
-                        }}
-                            onClick={() => { handleTileClicked(index) }} className="tile"></div>
+                        return <div
+                            onClick={() => { handleTileClicked(index) }} 
+                            data-testid="tile" 
+                            className="tile"></div>
                     })
                 }
             </div>
