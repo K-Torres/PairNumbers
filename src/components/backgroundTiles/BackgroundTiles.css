@@ -1,0 +1,100 @@
+:root{
+  --g1: rgb(98,0,234);
+  --g2: rgb(236,64,122);
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(
+    to right,
+    var(--g1),
+    var(--g2),
+    var(--g1)
+  );
+  background-size: 200%;
+  margin: 0px;
+  animation: backgroundAnim 10s linear infinite;
+}
+
+.container.toggled {
+  animation: none;
+}
+
+.tiles-container {
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+  position: absolute;
+  top: 0;
+}
+
+.tile {
+  position: relative;
+}
+
+.tile::before {
+  content: "";
+  position: absolute;
+  inset: 0.5px;
+  background-color: rgb(20, 20, 20);
+}
+
+.tile:hover {
+  opacity: 0.9;
+}
+
+.centered {
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+#title {
+  color: white;
+  font-family: "Rubik", sans-serif;
+  font-size: 6vw;
+  margin: 0px;
+  pointer-events: none;
+  transition: opacity 1200ms ease;
+  width: 50vw;
+  z-index: 3;
+}
+
+#title > .fancy {
+  color: var(--g2);
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5em;
+  line-height: 0.9em;
+}
+
+#title > p {
+  font-size: .5em;
+  font-weight: 100;
+  font-family: 'Dancing Script', cursive;
+
+}
+
+#icon {
+  color: rgba(255, 255, 255, 0.15);
+  font-size: 80vmin;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1200ms ease;
+  z-index: 1;
+}
+
+@keyframes backgroundAnim {
+  from{
+    background-position: 0% center;
+  }
+  to{
+    background-position: -200% center;
+  }
+}

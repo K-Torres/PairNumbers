@@ -1,11 +1,7 @@
-import './App.css'
+import BackgroundTiles from "./components/backgroundTiles/BackgroundTiles";
 
 function App() {
-  return (
-    <>
-      <h1>React</h1>
-    </>
-  )
+  return (<BackgroundTiles />)
 }
 
-export default App  
+export default App
